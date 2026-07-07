@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anandhu Shibu — Civil Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #E8DFD0;
+    --concrete: #C4B89A;
+    --steel: #2B3A47;
+    --rust: #A0522D;
+    --blueprint: #1A2E40;
+    --white: #F7F4F0;
+    --dim: #6B7A85;
+    --accent: #C17F3A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--steel);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 5vw;
+    background: rgba(247,244,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--sand);
+  }
+  .nav-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blueprint);
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    background: var(--blueprint);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Blueprint grid overlay — the signature element */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 6vw 80px 8vw;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: rgba(232,223,208,0.75);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 32px;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(232,223,208,0.55);
+    margin-top: 4px;
+  }
+
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    padding: 60px 6vw;
+  }
+  .blueprint-card {
+    width: 100%; max-width: 380px;
+    border: 1px solid rgba(193,127,58,0.4);
+    padding: 36px;
+    position: relative;
+  }
+  .blueprint-card::before {
+    content: '';
+    position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
+    border: 1px solid rgba(193,127,58,0.15);
+  }
+  .bc-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(193,127,58,0.25);
+    padding-bottom: 12px;
+  }
+  .bc-field { margin-bottom: 16px; }
+  .bc-key {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 3px;
+  }
+  .bc-val {
+    font-size: 0.9rem;
+    color: var(--sand);
+  }
+  .bc-val a { color: var(--accent); text-decoration: none; }
+  .bc-val a:hover { text-decoration: underline; }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 8vw; }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--blueprint);
+    margin-bottom: 60px;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  .exp-block {
+    border-left: 2px solid var(--sand);
+    padding-left: 36px;
+    margin-bottom: 64px;
+    position: relative;
+  }
+  .exp-block::before {
+    content: '';
+    position: absolute; left: -5px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--blueprint);
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .exp-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+  .exp-desc {
+    color: #4A5A66;
+    max-width: 660px;
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+  }
+
+  /* Projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--sand);
+    padding: 24px;
+    border-top: 3px solid var(--accent);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(43,58,71,0.1);
+  }
+  .pc-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--blueprint);
+    margin-bottom: 8px;
+  }
+  .pc-client {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 14px;
+  }
+  .pc-bullets { list-style: none; }
+  .pc-bullets li {
+    font-size: 0.83rem;
+    color: #4A5A66;
+    padding: 5px 0 5px 14px;
+    border-bottom: 1px solid rgba(43,58,71,0.08);
+    position: relative;
+    line-height: 1.45;
+  }
+  .pc-bullets li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+  .pc-bullets li:last-child { border-bottom: none; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--blueprint); }
+  #skills .section-title { color: var(--white); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+  }
+  .skill-group {}
+  .sg-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(193,127,58,0.3);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+  }
+  .sg-item {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+    color: var(--sand);
+  }
+  .sg-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--sand); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+  }
+  .edu-card {
+    background: var(--white);
+    padding: 28px;
+    border-bottom: 3px solid var(--accent);
+  }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--blueprint);
+    margin-bottom: 6px;
+  }
+  .edu-inst {
+    font-size: 0.8rem;
+    color: var(--rust);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .edu-detail {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--dim);
+    line-height: 1.8;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--blueprint);
+    text-align: center;
+    padding: 100px 8vw;
+  }
+  #contact .section-label { justify-content: center; display: block; }
+  #contact .section-title { color: var(--white); margin-bottom: 20px; }
+  .contact-sub {
+    color: rgba(232,223,208,0.6);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    font-size: 0.95rem;
+  }
+  .contact-links {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-btn.primary {
+    background: var(--accent);
+    color: var(--white);
+  }
+  .contact-btn.primary:hover { background: #D4893E; }
+  .contact-btn.secondary {
+    border: 1px solid rgba(193,127,58,0.5);
+    color: var(--sand);
+  }
+  .contact-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--sand);
+    padding: 24px 8vw;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-text { padding: 60px 6vw; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    nav { padding: 14px 5vw; }
+    .nav-links { gap: 16px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Anandhu Shibu</span>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Civil Engineer · Abu Dhabi, UAE</p>
+    <h1 class="hero-name">Anandhu<br>Shibu</h1>
+    <p class="hero-tagline">Building telecom infrastructure across Abu Dhabi — manholes, duct networks, and site engineering done right, on time.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">100+</div>
+        <div class="stat-label">km of Ducts</div>
+      </div>
+      <div>
+        <div class="stat-num">800+</div>
+        <div class="stat-label">Manholes Built</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="blueprint-card">
+      <div class="bc-label">Engineer Profile</div>
+      <div class="bc-field">
+        <div class="bc-key">Current Role</div>
+        <div class="bc-val">Civil Engineer — I.G.C. Construction LLC</div>
+      </div>
+      <div class="bc-field">
+        <div class="bc-key">Specialisation</div>
+        <div class="bc-val">Telecom Infrastructure · Civil Works</div>
+      </div>
+      <div class="bc-field">
+        <div class="bc-key">Location</div>
+        <div class="bc-val">Abu Dhabi, UAE</div>
+      </div>
+      <div class="bc-field">
+        <div class="bc-key">Mobile</div>
+        <div class="bc-val"><a href="tel:+971585021844">+971 585021844</a></div>
+      </div>
+      <div class="bc-field">
+        <div class="bc-key">Email</div>
+        <div class="bc-val"><a href="mailto:anandhushibu80@gmail.com">anandhushibu80@gmail.com</a></div>
+      </div>
+      <div class="bc-field">
+        <div class="bc-key">LinkedIn</div>
+        <div class="bc-val"><a href="https://www.linkedin.com/in/anandhu-shibu-57a8a619a" target="_blank">View Profile →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Work History</p>
+  <h2 class="section-title">Experience</h2>
+
+  <!-- IGC -->
+  <div class="exp-block">
+    <div class="exp-role">Civil Engineer</div>
+    <div class="exp-company">I.G.C. Construction LLC</div>
+    <div class="exp-meta">Nov 2023 – Present &nbsp;·&nbsp; Abu Dhabi, UAE &nbsp;·&nbsp; Telecom Infrastructure</div>
+    <p class="exp-desc">Site engineering for large-scale telecom infrastructure projects: excavation, pipe installation, manhole erection, foundations, and cable trenches across key Abu Dhabi dev[...]
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="pc-name">Lu'luat Al Raha</div>
+        <div class="pc-client">Client: ICT &nbsp;·&nbsp; Consultant: AECOM</div>
+        <ul class="pc-bullets">
+          <li>Installed 72 manholes (JRC 12 & JRC 14) for Du network</li>
+          <li>Supervised D54 & D56 duct installation across ~4 km main line</li>
+          <li>Prepared shop drawings and as-built drawings</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pc-name">Yas Acres Precinct</div>
+        <div class="pc-client">Client: ALDAR &nbsp;·&nbsp; Consultant: AECOM</div>
+        <ul class="pc-bullets">
+          <li>Completed installation of 17 manholes & ~5.3 km of ducts</li>
+          <li>Prepared BOQs, Method Statements, Risk Assessments</li>
+          <li>Managed WIRs, MIRs, and site documentation</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pc-name">Al Jubail Island</div>
+        <div class="pc-client">Client: LEAD &nbsp;·&nbsp; Consultant: Parsons</div>
+        <ul class="pc-bullets">
+          <li>~700 manholes & 100 km of D54/D56 ducts as part of engineering team</li>
+          <li>Coordinated Mandrel test reports and handover checklists</li>
+          <li>Oversaw final inspection for Du and Etisalat networks</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pc-name">Mid-Island Parkway Phase 1A</div>
+        <div class="pc-client">Client: DMT &nbsp;·&nbsp; Consultant: Parsons</div>
+        <ul class="pc-bullets">
+          <li>Managed civil works for Du & Etisalat: JRC 14 manholes & D54 ducts</li>
+          <li>Led technical team on IFC-standard layout drawings and grading</li>
+          <li>Coordinated inspections with DMT and Parsons</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pc-name">Infill Plots</div>
+        <div class="pc-client">Client: ALDAR &nbsp;·&nbsp; Consultant: WSP</div>
+        <ul class="pc-bullets">
+          <li>18 locations across multiple packages</li>
+          <li>Managed casting of 100+ manholes (JRC-12, JRC-04, JRC-14)</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <div class="pc-name">Construction Works IB3 & IB4</div>
+        <div class="pc-client">Client: ALDAR &nbsp;·&nbsp; Consultant: Mott MacDonald</div>
+        <ul class="pc-bullets">
+          <li>Led manhole casting and duct installation for MCC & Telecom</li>
+          <li>Managed all site paperwork: WIRs, MIRs, related documents</li>
+          <li>Coordinated subcontractors for piling works</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACT-CD -->
+  <div class="exp-block">
+    <div class="exp-role">Site Engineer</div>
+    <div class="exp-company">K K Anilkumar (Engineering Contractor) — FACT-CD</div>
+    <div class="exp-meta">Dec 2022 – Nov 2023 &nbsp;·&nbsp; Ernakulam, Kerala</div>
+    <p class="exp-desc">Industrial site engineering for pipe and equipment foundations, raft structures, and cable trenches at Fertilizers and Chemicals Travancore Cochin Division.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="pc-name">Industrial Infrastructure</div>
+        <div class="pc-client">FACT — Cochin Division</div>
+        <ul class="pc-bullets">
+          <li>Built 48 pipe foundations over 320 m</li>
+          <li>Supervised raft foundations, columns, and beams</li>
+          <li>Constructed cable trench from central substation to Ammonia storage tank</li>
+          <li>Built 2 equipment foundations for USS transformers</li>
+          <li>End-to-end site survey, planning, execution, and billing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ideal -->
+  <div class="exp-block">
+    <div class="exp-role">Site Engineer</div>
+    <div class="exp-company">Ideal Constructions</div>
+    <div class="exp-meta">Aug 2022 – Nov 2022 &nbsp;·&nbsp; Nedumkandam, Kerala</div>
+    <p class="exp-desc">Site engineering for a commercial building project — site inspections against drawings, specifications, and BOQ to ensure standard compliance.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Capabilities</p>
+  <h2 class="section-title">Technical Skills</h2>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="sg-title">Software & Tools</div>
+      <div class="sg-item"><span class="sg-dot"></span>AutoCAD (2D & 3D)</div>
+      <div class="sg-item"><span class="sg-dot"></span>MS Excel</div>
+      <div class="sg-item"><span class="sg-dot"></span>Technical Drawing Preparation</div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">Survey & Measurement</div>
+      <div class="sg-item"><span class="sg-dot"></span>Land & Topographic Surveying</div>
+      <div class="sg-item"><span class="sg-dot"></span>Auto Level & Digital Level</div>
+      <div class="sg-item"><span class="sg-dot"></span>Quantity & Volume Calculations (Cut & Fill)</div>
+      <div class="sg-item"><span class="sg-dot"></span>As-Built Survey Preparation</div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">Site Engineering</div>
+      <div class="sg-item"><span class="sg-dot"></span>Setting Out (Buildings, Roads, Utilities)</div>
+      <div class="sg-item"><span class="sg-dot"></span>IFC & Shop Drawing Interpretation</div>
+      <div class="sg-item"><span class="sg-dot"></span>Underground Utility Surveys</div>
+      <div class="sg-item"><span class="sg-dot"></span>Handing Over Document Preparation</div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-title">Documentation</div>
+      <div class="sg-item"><span class="sg-dot"></span>BOQ Preparation</div>
+      <div class="sg-item"><span class="sg-dot"></span>Method Statements & Risk Assessments</div>
+      <div class="sg-item"><span class="sg-dot"></span>WIRs, MIRs & Site Records</div>
+      <div class="sg-item"><span class="sg-dot"></span>Prequalification Submissions</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Background</p>
+  <h2 class="section-title">Education</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor of Technology (B.Tech)</div>
+      <div class="edu-inst">APJ Abdul Kalam Technological University</div>
+      <div class="edu-detail">
+        CGPA: 7.18<br>
+        2018 – 2022<br>
+        Kothamangalam, Kerala
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Higher Secondary Education (HSE)</div>
+      <div class="edu-inst">State Council of Educational Research & Training</div>
+      <div class="edu-detail">
+        Score: 78%<br>
+        2016 – 2018<br>
+        Idukki, Kerala
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Secondary School Leaving Certificate (SSLC)</div>
+      <div class="edu-inst">Central Board of Secondary Education</div>
+      <div class="edu-detail">
+        CGPA: 8.0<br>
+        2015 – 2016<br>
+        Idukki, Kerala
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">UAE Driving Licence</div>
+      <div class="edu-inst">Licence No. 1225530</div>
+      <div class="edu-detail">
+        Valid until: 07/10/2026<br>
+        Abu Dhabi, UAE
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="contact-sub">Based in Abu Dhabi and open to new civil and infrastructure engineering opportunities across the UAE.</p>
+  <div class="contact-links">
+    <a class="contact-btn primary" href="mailto:anandhushibu80@gmail.com">Send an Email</a>
+    <a class="contact-btn secondary" href="tel:+971585021844">+971 585021844</a>
+    <a class="contact-btn secondary" href="https://www.linkedin.com/in/anandhu-shibu-57a8a619a" target="_blank">LinkedIn Profile</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Anandhu Shibu</span>
+  <span>Civil Engineer · Abu Dhabi, UAE</span>
+</footer>
+
+</body>
+</html>
